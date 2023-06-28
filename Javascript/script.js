@@ -28,9 +28,6 @@ p2.then((res) => {
     console.log("second then p2 res:", res);
     return 120;
   })
-  .then((res) => {
-    console.log("hundred twenty:", res);
-  })
   .catch((error) => {
     console.log("this is an error in p2.", error);
   });
@@ -58,7 +55,3 @@ allPromises
   .then((res) => {
     console.log(res);
   });
-
-setTimeout(() => {
-  console.log("all promises:", allPromises);
-}, 5000);

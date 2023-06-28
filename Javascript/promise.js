@@ -87,7 +87,6 @@ CustomPromise.all = function (promises) {
           })
           .catch(function (error) {
             results[index] = { status: "rejected", reason: error };
-            // completedPromises++;
 
             if (completedPromises === numPromises) {
               resolve(results);
