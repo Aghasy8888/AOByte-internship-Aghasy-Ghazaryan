@@ -9,7 +9,7 @@ const config = {
   data: {},
 };
 
-const p1 = ajax(url + "ll", config);
+const p1 = ajax(url, config);
 const p2 = ajax(url, config);
 const p3 = ajax(url, config);
 
