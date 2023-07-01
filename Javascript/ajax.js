@@ -1,37 +1,36 @@
 import CustomPromise from "./promise.js";
 
-export default function ajax(url, config) {
+export default function ajax(url, config = {type: "GET", headers: {}, data: {}}) {
   return new CustomPromise(function (resolve, reject) {
-    try {
-      const xhr = new XMLHttpRequest();
-      xhr.open(config.type || "GET", url);
+    const xhr = new XMLHttpRequest();
+    // console.log(config);
 
-      for (let header in config.headers) {
-        if (config.headers.hasOwnProperty(header)) {
-          xhr.setRequestHeader(header, config.headers[header]);
-        }
+    xhr.open(config.type, url);
+
+    xhr.responseType = 'json'; // add responseType
+
+    if (Object.entries(config.headers).length) {
+      for (let [name, value] of Object.entries(config.headers)) {
+        xhr.setRequestHeader(name, value);
       }
+    }
 
-      xhr.onload = function () {
-        if ((xhr.status >= 200 && xhr.status < 300) || xhr.status === 304) {
-          resolve(JSON.parse(xhr.responseText));
-        } else {
-          reject(new Error(xhr.statusText));
-        }
-      };
+    xhr.send(JSON.stringify(config.data));
 
-      xhr.onerror = function () {
-        reject(new Error("Network error"));
-      };
-
-      try {
-        xhr.send(JSON.stringify(config.data));
-      } catch (error) {
-        console.log("Error occurred while sending request:", error);
-        reject(error);
+    xhr.onload = function() {
+      // console.log(xhr.getAllResponseHeaders())
+      if (xhr.status >= 200 && xhr.status < 400) {
+        resolve(xhr.response)
+      } else {
+        reject(new Error(`${xhr.status} ${xhr.statusText}`));
       }
-    } catch (error) {
-      console.log("hello this is my error.");
+    }
+
+    // 404 status will not trigger xhr.onerror() because, technically it's not an error
+    // 404 itself is a valid response
+
+    xhr.onerror = function() {
+      reject(new Error("Network error"));
     }
   });
 }

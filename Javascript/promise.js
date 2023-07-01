@@ -6,9 +6,9 @@ export default function CustomPromise(callback) {
   this.onFinally = null;
   this.state = "pending";
 
-  let resolve = (value) => {
+  const resolve = (value) => { // change let to const
     if (this.state === "pending") {
-      this.state = "resolved";
+      this.state = "fulfilled"; // change "resolved" to "fulfilled"
       this.value = value;
       this.onResolve.forEach((callback) => callback(value));
       if (this.onFinally) {
@@ -17,7 +17,7 @@ export default function CustomPromise(callback) {
     }
   };
 
-  let reject = (error) => {
+  const reject = (error) => { // change let to const
     if (this.state === "pending") {
       this.state = "rejected";
       this.error = error;
