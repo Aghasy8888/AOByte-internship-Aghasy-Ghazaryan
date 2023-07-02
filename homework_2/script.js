@@ -22,7 +22,7 @@ const tree = el("form", { action: "/some_action" }, [
     null
   ),
   el("br", {}, null),
-  el("input", { type: "submit", value: 'Submit' }, null),
+  el("input", { type: "submit", value: "Submit" }, null),
 ]);
 
 const root = document.getElementById("root");

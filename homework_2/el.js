@@ -13,28 +13,28 @@ import {
 export default function el(type, attrs, children) {
   switch (type) {
     case "div":
-      return new DivElement(type, attrs, children);
+      return new DivElement(attrs, children);
 
     case "span":
-      return new SpanElement(type, attrs, children);
+      return new SpanElement(attrs, children);
 
     case "ul":
-      return new UlElement(type, attrs, children);
+      return new UlElement(attrs, children);
 
     case "li":
-      return new LiElement(type, attrs, children);
+      return new LiElement(attrs, children);
 
     case "form":
-      return new FormElement(type, attrs, children);
+      return new FormElement(attrs, children);
 
     case "label":
-      return new LabelElement(type, attrs, children);
+      return new LabelElement(attrs, children);
 
     case "br":
-      return new BrElement(type, attrs, children);
+      return new BrElement(attrs, children);
 
     case "input":
-      return new InputElement(type, attrs, children);
+      return new InputElement(attrs, children);
 
     default:
       return new DomElement(type, attrs, children);

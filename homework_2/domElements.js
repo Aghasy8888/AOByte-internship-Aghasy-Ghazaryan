@@ -1,4 +1,4 @@
-import typeCheck from "./typeCheck.js";
+import drawInDraw from "./drawInDraw.js";
 
 export default class DomElement {
   constructor(type, attrs, children) {
@@ -9,72 +9,103 @@ export default class DomElement {
 
   draw() {
     const element = document.createElement(this.type);
-    switch (typeCheck(this.children)) {
-      case "DomElement":
-        element.appendChild(this.children.draw());
-        break;
-      case "array":
-        this.children.forEach((child) => {
-          element.appendChild(child.draw());
-        });
-        break;
-      case "string":
-        element.innerText = this.children;
-        break;
-      default:
-        break;
-    }
-    for (const attr in this.attrs) {
-      element.setAttribute(attr, this.attrs[attr]);
-    }
+    drawInDraw.apply(this, [element]);
     return element;
   }
 }
 
 export class DivElement extends DomElement {
-  constructor(type, attrs, children) {
-    super(type, attrs, children);
+  constructor(attrs, children) {
+    super(null, attrs, children);
+  }
+
+  draw() {
+    const div = document.createElement("div");
+    drawInDraw.apply(this, [div]);
+    return div;
   }
 }
 
 export class SpanElement extends DomElement {
-  constructor(type, attrs, children) {
-    super(type, attrs, children);
+  constructor(attrs, children) {
+    super(null, attrs, children);
+  }
+
+  draw() {
+    const span = document.createElement("span");
+    drawInDraw.apply(this, [span]);
+    return span;
   }
 }
 
 export class UlElement extends DomElement {
-  constructor(type, attrs, children) {
-    super(type, attrs, children);
+  constructor(attrs, children) {
+    super(null, attrs, children);
+  }
+
+  draw() {
+    const ul = document.createElement("ul");
+    drawInDraw.apply(this, [ul]);
+    return ul;
   }
 }
 
 export class LiElement extends DomElement {
-  constructor(type, attrs, children) {
-    super(type, attrs, children);
+  constructor(attrs, children) {
+    super(null, attrs, children);
+  }
+
+  draw() {
+    const li = document.createElement("li");
+    drawInDraw.apply(this, [li]);
+    return li;
   }
 }
 
 export class InputElement extends DomElement {
-  constructor(type, attrs, children) {
-    super(type, attrs, children);
+  constructor(attrs, children) {
+    super(null, attrs, children);
+  }
+
+  draw() {
+    const input = document.createElement("input");
+    drawInDraw.apply(this, [input]);
+    return input;
   }
 }
 
 export class BrElement extends DomElement {
-  constructor(type, attrs, children) {
-    super(type, attrs, children);
+  constructor(attrs, children) {
+    super(null, attrs, children);
+  }
+
+  draw() {
+    const br = document.createElement("br");
+    drawInDraw.apply(this, [br]);
+    return br;
   }
 }
 
 export class LabelElement extends DomElement {
-  constructor(type, attrs, children) {
-    super(type, attrs, children);
+  constructor(attrs, children) {
+    super(null, attrs, children);
+  }
+
+  draw() {
+    const label = document.createElement("label");
+    drawInDraw.apply(this, [label]);
+    return label;
   }
 }
 
 export class FormElement extends DomElement {
-  constructor(type, attrs, children) {
-    super(type, attrs, children);
+  constructor(attrs, children) {
+    super(null, attrs, children);
+  }
+
+  draw() {
+    const form = document.createElement("form");
+    drawInDraw.apply(this, [form]);
+    return form;
   }
 }
