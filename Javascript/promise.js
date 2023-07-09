@@ -48,8 +48,12 @@ CustomPromise.prototype.then = function (onResolve, onReject) {
 
     const rejectHandler = (error) => {
       try {
-        const result = onReject ? onReject(error) : error;
-        resolve(result);
+        if (onReject) {
+          const result = onReject(error);
+          resolve(result);
+        } else {
+          reject(error);
+        }
       } catch (error) {
         reject(error);
       }
@@ -86,13 +90,7 @@ CustomPromise.all = function (promises) {
             }
           })
           .catch(function (error) {
-            results[index] = { status: "rejected", reason: error };
-
-            if (completedPromises === numPromises) {
-              resolve(results);
-            } else {
-                reject(results[index].reason);
-            }
+            reject(error);
           });
       });
     }
