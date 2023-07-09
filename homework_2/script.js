@@ -1,6 +1,6 @@
 import el from "./el.js";
 
-const tree = el("form", { action: "/some_action" }, [
+const tree = el("formula2", { action: "/some_action" }, [
   el("label", { for: "name" }, "First name:"),
   el("br", {}, null),
   el(
@@ -26,4 +26,5 @@ const tree = el("form", { action: "/some_action" }, [
 ]);
 
 const root = document.getElementById("root");
+
 root.appendChild(tree.draw());
