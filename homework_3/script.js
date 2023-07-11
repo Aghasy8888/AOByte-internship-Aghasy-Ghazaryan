@@ -1,9 +1,8 @@
-import render from "./render.js";
-import { triangleLength, rotateButton } from "./render.js";
+import render, { triangleLength, rotateButton, triangle } from "./render.js";
 import rotate from "./rotate.js";
 
 rotateButton.addEventListener("click", () => {
-  rotate();
+  rotate(triangle);
 });
 
 triangleLength.addEventListener("keydown", (event) => {
