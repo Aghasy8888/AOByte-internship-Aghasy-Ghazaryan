@@ -1,0 +1,63 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.title {
+  margin-top: 20px;
+  text-align: center;
+}
+
+#triangleLength {
+  display: block;
+  margin: auto;
+  margin-top: 20px;
+}
+
+#rotate {
+  display: block;
+  margin: auto;
+  margin-top: 20px;
+  display: none;
+}
+
+#triangle {
+  margin: auto;
+}
+
+.triangleContainer {
+  margin-top: 30px;
+}
+
+.cell {
+  text-align: center;
+  width: 25px; /*a = 25px (each side of the triangle)
+   when triangle length = 2*/
+  height: 22px; /*h = a*√3/2 ≈ 22px (height of the triangle
+  when triangle length = 2
+  */
+  line-height: 4px; /*making the center of the asterisk
+   match the top border of the cell*/
+}
+
+/*As the height of an equilateral triangle depends on one side of the 
+triangle (h = a*√3/2) we can find the height cause we have the length 
+of each side. 
+When 'a' changes 'h' changes relatively, which means when 'a' becomes
+2a, h becomes 2h. Because we found h ≈ 22px for a = 25px we can be
+sure that for each triangle length h will be (length - 1) * 22px.
+And the triangle will be equilateral
+*/
+
+.line {
+  display: flex;
+  justify-content: center;
+  line-height: 21px;
+}
+
+.validationMessage {
+  display: none;
+  text-align: center;
+  margin: 10px;
+  color: red;
+}
