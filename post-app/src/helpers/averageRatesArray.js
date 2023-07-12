@@ -2,7 +2,7 @@ import findAverage from './findAverage';
 import idGenerator from './idGenarator';
 import { pool } from './postsObject';
 
-export let averageRatesArray = pool.map((post) => {
+export const averageRatesArray = pool.map((post) => {
   const ratingArray = post.comments.map((comment) => comment.rating);
 
   post.averageRate = findAverage(ratingArray);
