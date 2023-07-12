@@ -1,0 +1,27 @@
+.postList {
+border: 1px solid black;
+margin: auto;
+margin-top: 20px;
+padding: 10px;
+background-color: aqua;
+width: 45%;
+min-height: 10vh;
+}
+
+.upperContainer {
+    display: flex;
+    justify-content: space-between;
+}
+
+.buttonContainer {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.postsContainer {
+    
+}
+
+button {
+    margin: 10px;
+}
