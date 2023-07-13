@@ -1,9 +1,9 @@
-import { Component } from 'react';
+import { PureComponent } from 'react';
 import styles from './PostListStyle.module.css';
 import Post from '../Post/Post';
 import { pool } from '../../helpers/postsObject';
 
-class PostList extends Component {
+class PostList extends PureComponent {
   state = {
     postList: [],
     sortMinTOMax: true,

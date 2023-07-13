@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import styles from './PostStyle.module.css';
 
-class Post extends Component {
+class Post extends PureComponent {
   render() {
     const { title, content, averageRate, removePost, id } = this.props;
     return (
