@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import styles from './PostListContainerStyle.module.css';
 import PostList from '../PostList/PostList';
 import { averageRatesArray } from '../../helpers/averageRatesArray';
-import { pool } from '../../helpers/postsObject';
+import { pool } from '../../data/postsObject';
 
 class PostListContainer extends Component {
   state = {

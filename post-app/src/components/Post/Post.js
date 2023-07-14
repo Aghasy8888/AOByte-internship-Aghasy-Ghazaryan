@@ -1,4 +1,5 @@
 import React, { PureComponent } from 'react';
+import { Button } from 'react-bootstrap';
 import styles from './PostStyle.module.css';
 
 class Post extends PureComponent {
@@ -10,7 +11,7 @@ class Post extends PureComponent {
         <div>{content}</div>
         <div className={styles.buttonRate}>
           <div className={styles.averageRate}>{averageRate}</div>
-          <button onClick={() => removePost(id, averageRate)}>-</button>
+          <Button onClick={() => removePost(id, averageRate)}>-</Button>
         </div>
       </div>
     );

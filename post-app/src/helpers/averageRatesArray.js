@@ -1,6 +1,6 @@
+import { pool } from '../data/postsObject';
 import findAverage from './findAverage';
 import idGenerator from './idGenarator';
-import { pool } from './postsObject';
 
 export const averageRatesArray = pool.map((post) => {
   const ratingArray = post.comments.map((comment) => comment.rating);

@@ -4,7 +4,7 @@ margin: auto;
 margin-top: 20px;
 padding: 10px;
 background-color: aqua;
-width: 45%;
+width: 48%;
 min-height: 10vh;
 }
 
@@ -14,13 +14,24 @@ min-height: 10vh;
 }
 
 .buttonContainer {
+    margin-right: 89px;
     display: flex;
+    flex-wrap: wrap;
     justify-content: flex-end;
 }
 
 .postsContainer {
-    
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
 }
+
+.dropdownButton {
+    max-width: 40px;
+    margin-right: 45px;
+    margin-top: 2px;
+}
+
 
 button {
     margin: 10px;
