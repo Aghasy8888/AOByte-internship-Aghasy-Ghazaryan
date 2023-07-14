@@ -1,0 +1,38 @@
+.postList {
+border: 1px solid black;
+margin: auto;
+margin-top: 20px;
+padding: 10px;
+background-color: aqua;
+width: 48%;
+min-height: 10vh;
+}
+
+.upperContainer {
+    display: flex;
+    justify-content: space-between;
+}
+
+.buttonContainer {
+    margin-right: 89px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+}
+
+.postsContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.dropdownButton {
+    max-width: 40px;
+    margin-right: 45px;
+    margin-top: 2px;
+}
+
+
+button {
+    margin: 10px;
+}
