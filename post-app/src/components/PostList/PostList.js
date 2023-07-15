@@ -66,10 +66,8 @@ class PostList extends PureComponent {
     this.setState({ sort: option });
     this.setState((prevState) => {
       const postListCopy = [...prevState.postList];
-      console.log(postListCopy);
       switch (prevState.sort.value) {
         case order.ASCENDING_ORDER:
-          console.log('i am in swith case 1');
           postListCopy.sort((a, b) => a.averageRate - b.averageRate);
           break;
         case order.DESCENDING_ORDER:
@@ -77,10 +75,8 @@ class PostList extends PureComponent {
           break;
 
         default:
-          console.log('default case');
           return prevState;
       }
-      console.log(postListCopy);
       return {
         postList: postListCopy,
       };
