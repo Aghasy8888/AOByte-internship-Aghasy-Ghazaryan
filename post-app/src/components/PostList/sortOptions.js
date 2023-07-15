@@ -5,11 +5,11 @@ export const sortOptions = [
     },
     {
       label: 'Ascending order',
-      value: 'ascendingOrder',
+      value: 'ASCENDING_ORDER',
     },
     {
       label: 'Descending order',
-      value: 'descendingOrder',
+      value: 'DESCENDING_ORDER',
     },
   ];
 
