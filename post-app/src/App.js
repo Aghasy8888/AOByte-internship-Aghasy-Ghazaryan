@@ -1,11 +1,11 @@
 
 import './App.css';
-import PostListContainer from './components/PostListContainer/PostListContainer';
+import PostApp from './components/PostApp/PostApp';
 
 function App() {
   return (
     <div className='App'>
-      <PostListContainer />
+      <PostApp />
     </div>
   );
 }
