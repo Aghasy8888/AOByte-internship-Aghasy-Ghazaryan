@@ -1,10 +1,10 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import styles from './PostListContainerStyle.module.css';
 import PostList from '../PostList/PostList';
 import { averageRatesArray } from '../../helpers/averageRatesArray';
 import { pool } from '../../data/postsObject';
 
-class PostListContainer extends Component {
+class PostListContainer extends PureComponent {
   state = {
     averageRatesArray,
   };
@@ -36,7 +36,7 @@ class PostListContainer extends Component {
       ({ averageRatesArray }) => {
         const averageRatesArrayCopy = [...averageRatesArray];
         clearingPostsIndexes.forEach((index) => {
-          averageRatesArrayCopy[index] = pool[index].averageRate;
+          averageRatesArrayCopy[index] = pool[index].rating;
         });
         return {
           averageRatesArray: [...averageRatesArrayCopy],
@@ -45,12 +45,6 @@ class PostListContainer extends Component {
   };
 
   render() {
-    const {
-      updateAverageRatesArray,
-      updateAverageRatesInRemove,
-      updateAverageRatesInClear,
-    } = this;
-
     const { averageRatesArray } = this.state;
     
     return (
@@ -58,16 +52,16 @@ class PostListContainer extends Component {
         <PostList
           listNum={1}
           averageRatesArray={averageRatesArray}
-          updateAverageRatesArray={updateAverageRatesArray}
-          updateAverageRatesInRemove={updateAverageRatesInRemove}
-          updateAverageRatesInClear={updateAverageRatesInClear}
+          updateAverageRatesArray={this.updateAverageRatesArray}
+          updateAverageRatesInRemove={this.updateAverageRatesInRemove}
+          updateAverageRatesInClear={this.updateAverageRatesInClear}
         />
         <PostList
           listNum={2}
           averageRatesArray={averageRatesArray}
-          updateAverageRatesArray={updateAverageRatesArray}
-          updateAverageRatesInRemove={updateAverageRatesInRemove}
-          updateAverageRatesInClear={updateAverageRatesInClear}
+          updateAverageRatesArray={this.updateAverageRatesArray}
+          updateAverageRatesInRemove={this.updateAverageRatesInRemove}
+          updateAverageRatesInClear={this.updateAverageRatesInClear}
         />
       </div>
     );

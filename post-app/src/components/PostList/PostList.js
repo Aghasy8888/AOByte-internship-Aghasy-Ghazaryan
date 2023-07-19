@@ -1,10 +1,11 @@
 import { PureComponent } from 'react';
-import { DropdownButton, Dropdown, Button } from 'react-bootstrap';
-import styles from './PostListStyle.module.css';
+import { Button } from 'react-bootstrap';
 import Post from '../Post/Post';
 import { pool } from '../../data/postsObject';
-import { sortOptions, order } from './sortOptions';
-
+import { order } from './sortOptions';
+import { sort } from '../../helpers/helpers';
+import styles from './PostListStyle.module.css';
+import Sort from '../Sort/Sort';
 class PostList extends PureComponent {
   state = {
     postList: [],
@@ -24,7 +25,7 @@ class PostList extends PureComponent {
     }
   };
 
-  removePost = (id, averageRate) => {
+  removePost = (id, rating) => {
     const { updateAverageRatesInRemove } = this.props;
     const removingPost = pool.find((post) => post.id === id);
 
@@ -35,7 +36,7 @@ class PostList extends PureComponent {
       const prevPostListCopy = prevState.postList;
       prevPostListCopy.splice(removingPostIndex, 1);
       const newPostList = prevPostListCopy;
-      updateAverageRatesInRemove(averageRate, removingPostIndexFromPool);
+      updateAverageRatesInRemove(rating, removingPostIndexFromPool);
 
       return {
         postList: newPostList,
@@ -66,17 +67,7 @@ class PostList extends PureComponent {
     this.setState({ sort: option });
     this.setState((prevState) => {
       const postListCopy = [...prevState.postList];
-      switch (prevState.sort.value) {
-        case order.ASCENDING_ORDER:
-          postListCopy.sort((a, b) => a.averageRate - b.averageRate);
-          break;
-        case order.DESCENDING_ORDER:
-          postListCopy.sort((a, b) => b.averageRate - a.averageRate);
-          break;
-
-        default:
-          return prevState;
-      }
+      sort(prevState.sort.value, postListCopy, order);
 
       return {
         postList: postListCopy,
@@ -96,38 +87,25 @@ class PostList extends PureComponent {
         id={post.id}
         title={post.title}
         content={post.content}
-        averageRate={post.averageRate}
+        rating={post.rating}
       />
     ));
 
     return (
       <div className={styles.postList}>
+
         <div className={styles.upperContainer}>
           <h3>List {listNum}</h3>
           <div className={styles.buttonContainer}>
             <Button onClick={() => addPost(listNum)}>+</Button>
             <Button onClick={() => clearPostList(listNum)}>Clear</Button>
-            {/*<button onClick={handleSort}>Sort</button>*/}
 
-            <DropdownButton
-              className={styles.dropdownButton}
-              variant='outline-primary'
-              title={sort.value ? sort.label : 'Sort'}
-              id='sort'
-            >
-              {sortOptions.map((option, index) => (
-                <Dropdown.Item
-                  key={index}
-                  active={sort.value === option.value}
-                  onClick={() => handleSort(option)}
-                >
-                  {option.label}
-                </Dropdown.Item>
-              ))}
-            </DropdownButton>
+            <Sort sort={sort} handleSort={handleSort} />
           </div>
         </div>
+
         <div className={styles.postsContainer}>{postComponents}</div>
+        
       </div>
     );
   }

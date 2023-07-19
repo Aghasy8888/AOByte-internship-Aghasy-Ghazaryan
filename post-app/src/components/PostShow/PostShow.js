@@ -1,10 +1,10 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import styles from './PostShowStyle.module.css';
 import { pool } from '../../data/postsObject';
 import SinglePostShow from '../SinglePostShow/SinglePostShow';
 import Search from '../Search/Search';
 
-class PostShow extends Component {
+class PostShow extends PureComponent {
   state = {
     postsToShow: pool,
     search: '',
@@ -18,7 +18,7 @@ class PostShow extends Component {
   };
 
   render() {
-    const { postsToShow, search } = this.state;
+    const { postsToShow, search} = this.state;
     const postComponents = postsToShow.map((post, index) => (
       <SinglePostShow
         key={index}

@@ -3,9 +3,12 @@ import findAverage from './findAverage';
 import idGenerator from './idGenarator';
 
 export const averageRatesArray = pool.map((post) => {
-  const ratingArray = post.comments.map((comment) => comment.rating);
+  const ratingArray = post.comments.map((comment) => {
+    comment.id = idGenerator();
+    return comment.rating
+  });
 
-  post.averageRate = findAverage(ratingArray);
+  post.rating = findAverage(ratingArray);
   post.id = idGenerator();
   post.parent = null;
 

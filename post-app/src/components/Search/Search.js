@@ -9,16 +9,16 @@ class Search extends PureComponent {
   };
 
   handleSubmit = () => {
-    const {search} = this.state;
-    const foundPosts = pool.map((post) => {
-      const found = post.comments.find((comment) =>
-        comment.content.toLowerCase().includes(search.toLowerCase())
-      );
+    const { search } = this.state;
+    const foundPosts = pool
+      .filter((post) => {
+        const found = post.comments.find((comment) =>
+          comment.content.toLowerCase().includes(search.toLowerCase())
+        );
 
-      if (found) {
-        return post;
-      }
-    }).filter((post) => post);
+        return found;
+      })
+
 
     this.props.getFoundPosts(foundPosts, search);
   };
@@ -26,10 +26,10 @@ class Search extends PureComponent {
   render() {
     return (
       <div>
-        <InputGroup>
+        <InputGroup className={styles.inputGroup}>
           <Form.Control
             className={styles.formControl}
-            placeholder='Search'
+            placeholder='Search...'
             onChange={(event) =>
               this.setState({
                 search: event.target.value,
