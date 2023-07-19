@@ -1,10 +1,10 @@
 import React, { PureComponent } from 'react';
-import styles from './SinglePostShowStyle.module.css';
-import { separateStr_1ByStr_2, sort } from '../../helpers/helpers';
+import { isOnlySpaces, separateStr_1ByStr_2, sort } from '../../helpers/helpers';
 import Sort from '../Sort/Sort';
 import { order } from '../PostList/sortOptions';
 import { Button, Form, InputGroup } from 'react-bootstrap';
-import idGenarator from '../../helpers/idGenarator'
+import idGenarator from '../../helpers/idGenarator';
+import styles from './SinglePostShowStyle.module.css';
 class SinglePostShow extends PureComponent {
   state = {
     comments: [...this.props.comments],
@@ -44,8 +44,14 @@ class SinglePostShow extends PureComponent {
   }
 
   addComment = () => {
+    const {comTextToBeAdded} = this.state;
+
+    if(!comTextToBeAdded || isOnlySpaces(comTextToBeAdded)) {
+      return;
+    }
+
     const commentToBeAdded = {
-      content: this.state.comTextToBeAdded,
+      content: comTextToBeAdded,
       id: idGenarator(),
       rating: (Math.random() * 9 + 1).toFixed(0),
     };

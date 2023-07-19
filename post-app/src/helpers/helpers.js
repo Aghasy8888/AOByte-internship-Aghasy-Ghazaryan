@@ -19,3 +19,9 @@ export function sort(sortValue, list, order) {
       break;
   }
 }
+
+export function isOnlySpaces(str) {
+  const strippedStr = str.replace(/\s/g, ''); 
+  return strippedStr.length === 0;
+}
+
