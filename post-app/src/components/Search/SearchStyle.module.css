@@ -1,0 +1,12 @@
+.formControl {
+    margin-top: 10px;
+    height: fit-content;
+}
+
+.inputGroup {
+    margin: 50px 20px 0 20px ;
+    height: fit-content;
+    width: 40%;
+    min-width: 200px;
+}
+
