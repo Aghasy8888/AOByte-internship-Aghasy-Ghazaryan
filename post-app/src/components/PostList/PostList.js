@@ -1,97 +1,86 @@
-import { PureComponent } from 'react';
+import { memo, useState } from 'react';
 import { Button } from 'react-bootstrap';
+
 import Post from '../Post/Post';
+import Sort from '../Sort/Sort';
+
 import { pool } from '../../data/postsObject';
 import { order } from './sortOptions';
-import { sort } from '../../helpers/helpers';
-import styles from './PostListStyle.module.css';
-import Sort from '../Sort/Sort';
-class PostList extends PureComponent {
-  state = {
-    postList: [],
-    sort: { value: '' },
-  };
+import { sort as sortPosts } from '../../helpers/helpers';
 
-  addPost = (listNum) => {
-    const { averageRatesArray, updateAverageRatesArray } = this.props;
+import styles from './PostListStyle.module.css';
+
+function PostList(props) {
+  const [postList, setPostList] = useState([]);
+  const [sort, setSort] = useState({ value: '' });
+  const { listNum } = props;
+
+
+  const addPost = (listNum) => {
+    const { averageRatesArray, updateAverageRatesArray } = props;
     const index = averageRatesArray.indexOf(Math.max(...averageRatesArray));
     pool[index].parent = `List ${listNum}`;
 
     if (averageRatesArray[index] !== -1) {
       updateAverageRatesArray(index);
-      this.setState(({ postList }) => ({
-        postList: [...postList, pool[index]],
-      }));
+      setPostList(prevPostList => [...prevPostList, pool[index]])
     }
   };
 
-  removePost = (id, rating) => {
-    const { updateAverageRatesInRemove } = this.props;
+
+  const removePost = (id, rating) => {
     const removingPost = pool.find((post) => post.id === id);
 
     const removingPostIndexFromPool = pool.indexOf(removingPost);
 
-    this.setState((prevState) => {
-      const removingPostIndex = prevState.postList.indexOf(removingPost);
-      const prevPostListCopy = prevState.postList;
+    setPostList(prevPostList => {
+      const removingPostIndex = prevPostList.indexOf(removingPost);
+      const prevPostListCopy = [...prevPostList];
       prevPostListCopy.splice(removingPostIndex, 1);
-      const newPostList = prevPostListCopy;
-      updateAverageRatesInRemove(rating, removingPostIndexFromPool);
+      props.updateAverageRatesInRemove(rating, removingPostIndexFromPool);
 
-      return {
-        postList: newPostList,
-      };
-    });
+      return prevPostListCopy;
+    } )
   };
 
-  clearPostList = (listNum) => {
-    const clearingPosts = this.state.postList.filter(
+
+  const clearPostList = (listNum) => {
+    const clearingPosts = postList.filter(
       (post) => post.parent === `List ${listNum}`
     );
-
     const clearingPostsIds = clearingPosts.map((post) => post.id);
-
     const clearingPostsIndexes = clearingPostsIds.map((id) => {
       const clearingSinglePost = pool.find((post) => post.id === id);
       return pool.indexOf(clearingSinglePost);
     });
-
-    this.props.updateAverageRatesInClear(clearingPostsIndexes);
-
-    this.setState({
-      postList: [],
-    });
+    props.updateAverageRatesInClear(clearingPostsIndexes);
+    setPostList([]);
   };
 
-  handleSort = (option) => {
-    this.setState({ sort: option });
-    this.setState((prevState) => {
-      const postListCopy = [...prevState.postList];
-      sort(prevState.sort.value, postListCopy, order);
+  const handleSort = (option) => {
+    console.log('option: ',option);
+    setSort(option);    
+    setPostList((prevPostList) => {
+      const postListCopy = [...prevPostList];
+      sortPosts(option.value, postListCopy, order);
 
-      return {
-        postList: postListCopy,
-      };
-    });
+      return postListCopy;
+    })
   };
 
-  render() {
-    const { postList, sort } = this.state;
-    const { listNum } = this.props;
-    const { removePost, clearPostList, addPost, handleSort } = this;
+  const postComponents = postList.map((post) => (
+    <Post
+      removePost={removePost}
+      key={post.id}
+      id={post.id}
+      title={post.title}
+      content={post.content}
+      rating={post.rating}
+    />
+  ));
 
-    const postComponents = postList.map((post) => (
-      <Post
-        removePost={removePost}
-        key={post.id}
-        id={post.id}
-        title={post.title}
-        content={post.content}
-        rating={post.rating}
-      />
-    ));
-
-    return (
+  return (
+    (
       <div className={styles.postList}>
 
         <div className={styles.upperContainer}>
@@ -107,8 +96,9 @@ class PostList extends PureComponent {
         <div className={styles.postsContainer}>{postComponents}</div>
         
       </div>
-    );
-  }
+    )
+  )
 }
 
-export default PostList;
+
+export default memo(PostList);

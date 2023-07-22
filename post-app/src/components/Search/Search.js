@@ -1,15 +1,12 @@
-import React, { PureComponent } from 'react';
-import styles from './SearchStyle.module.css';
+import React, { memo, useState } from 'react';
 import { InputGroup, Form, Button } from 'react-bootstrap';
 import { pool } from '../../data/postsObject';
+import styles from './SearchStyle.module.css';
 
-class Search extends PureComponent {
-  state = {
-    search: '',
-  };
+function Search(props) {
+  const [search, setSearch] = useState('');
 
-  handleSubmit = () => {
-    const { search } = this.state;
+  const handleSubmit = () => {
     const foundPosts = pool
       .filter((post) => {
         const found = post.comments.find((comment) =>
@@ -20,39 +17,33 @@ class Search extends PureComponent {
       })
 
 
-    this.props.getFoundPosts(foundPosts, search);
+    props.getFoundPosts(foundPosts, search);
   };
-
-  render() {
-    return (
-      <div>
-        <InputGroup className={styles.inputGroup}>
-          <Form.Control
-            className={styles.formControl}
-            placeholder='Search...'
-            onChange={(event) =>
-              this.setState({
-                search: event.target.value,
-              })
+  
+  return (
+    <div>
+      <InputGroup className={styles.inputGroup}>
+        <Form.Control
+          className={styles.formControl}
+          placeholder='Search...'
+          onChange={(event) => setSearch(event.target.value)}
+          onKeyDown={(event) => {
+            if (event.key === 'Enter') {
+              handleSubmit();
             }
-            onKeyDown={(event) => {
-              if (event.key === 'Enter') {
-                this.handleSubmit();
-              }
-            }}
-          />
+          }}
+        />
 
-          <Button
-            className={styles.search}
-            variant='outline-primary'
-            onClick={this.handleSubmit}
-          >
-            Search
-          </Button>
-        </InputGroup>
-      </div>
-    );
-  }
+        <Button
+          className={styles.search}
+          variant='outline-primary'
+          onClick={handleSubmit}
+        >
+          Search
+        </Button>
+      </InputGroup>
+    </div>
+  )
 }
 
-export default Search;
+export default memo(Search);

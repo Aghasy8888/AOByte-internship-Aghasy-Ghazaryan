@@ -1,71 +1,61 @@
-import React, { PureComponent } from 'react';
-import styles from './PostListContainerStyle.module.css';
+import React, { memo, useState } from 'react';
 import PostList from '../PostList/PostList';
-import { averageRatesArray } from '../../helpers/averageRatesArray';
+import { averageRatesArray as  averageRatesArrayData} from '../../helpers/averageRatesArray';
 import { pool } from '../../data/postsObject';
+import styles from './PostListContainerStyle.module.css';
 
-class PostListContainer extends PureComponent {
-  state = {
-    averageRatesArray,
+function PostListContainer(props) {
+  const [averageRatesArray, setAverageRatesArray] = useState(averageRatesArrayData);
+
+  const updateAverageRatesArray = (index) => {
+    setAverageRatesArray((prevAverageRatesArray) => {
+      const averageRatesArrayCopy = [...prevAverageRatesArray];
+      averageRatesArrayCopy[index] = -1;
+
+      return averageRatesArrayCopy;
+    })
   };
 
-  updateAverageRatesArray = (index) => {
-    this.setState(
-      ({ averageRatesArray }) => {
-        const averageRatesArrayCopy = [...averageRatesArray];
-        averageRatesArrayCopy[index] = -1;
-        return {
-          averageRatesArray: averageRatesArrayCopy,
-        };
-      },);
+  const updateAverageRatesInRemove = (averageRate, removingPostIndexFromPool) => {
+    setAverageRatesArray((prevAverageRatesArray) => {
+      const averageRatesArrayCopy = [...prevAverageRatesArray];
+      averageRatesArrayCopy[removingPostIndexFromPool] = averageRate;
+
+      return averageRatesArrayCopy;
+    })
   };
 
-  updateAverageRatesInRemove = (averageRate, removingPostIndexFromPool) => {
-    this.setState(
-      ({ averageRatesArray }) => {
-        const averageRatesArrayCopy = [...averageRatesArray];
-        averageRatesArrayCopy[removingPostIndexFromPool] = averageRate;
-        return {
-          averageRatesArray: averageRatesArrayCopy,
-        };
-      },);
-  };
+  const updateAverageRatesInClear = (clearingPostsIndexes) => {
+    setAverageRatesArray((prevAverageRatesArray) => {
+      const averageRatesArrayCopy = [...prevAverageRatesArray];
+      clearingPostsIndexes.forEach((index) => {
+        averageRatesArrayCopy[index] = pool[index].rating;
+      });
 
-  updateAverageRatesInClear = (clearingPostsIndexes) => {
-    this.setState(
-      ({ averageRatesArray }) => {
-        const averageRatesArrayCopy = [...averageRatesArray];
-        clearingPostsIndexes.forEach((index) => {
-          averageRatesArrayCopy[index] = pool[index].rating;
-        });
-        return {
-          averageRatesArray: [...averageRatesArrayCopy],
-        };
-      },);
+      return [...averageRatesArrayCopy];
+    })
   };
-
-  render() {
-    const { averageRatesArray } = this.state;
-    
-    return (
-      <div className={styles.PostListContainer}>
-        <PostList
-          listNum={1}
-          averageRatesArray={averageRatesArray}
-          updateAverageRatesArray={this.updateAverageRatesArray}
-          updateAverageRatesInRemove={this.updateAverageRatesInRemove}
-          updateAverageRatesInClear={this.updateAverageRatesInClear}
-        />
-        <PostList
-          listNum={2}
-          averageRatesArray={averageRatesArray}
-          updateAverageRatesArray={this.updateAverageRatesArray}
-          updateAverageRatesInRemove={this.updateAverageRatesInRemove}
-          updateAverageRatesInClear={this.updateAverageRatesInClear}
-        />
-      </div>
-    );
-  }
+  
+  return (
+    <div className={styles.PostListContainer}>
+      <PostList
+        listNum={1}
+        averageRatesArray={averageRatesArray}
+        updateAverageRatesArray={updateAverageRatesArray}
+        updateAverageRatesInRemove={updateAverageRatesInRemove}
+        updateAverageRatesInClear={updateAverageRatesInClear}
+      />
+      <PostList
+        listNum={2}
+        averageRatesArray={averageRatesArray}
+        updateAverageRatesArray={updateAverageRatesArray}
+        updateAverageRatesInRemove={updateAverageRatesInRemove}
+        updateAverageRatesInClear={updateAverageRatesInClear}
+      />
+    </div>
+  )
 }
 
-export default PostListContainer;
+
+
+export default memo(PostListContainer) ;

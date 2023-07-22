@@ -1,77 +1,60 @@
-import React, { PureComponent } from 'react';
-import { isOnlySpaces, separateStr_1ByStr_2, sort } from '../../helpers/helpers';
+import React, { memo, useEffect, useState } from 'react';
+import { Button, Form, InputGroup } from 'react-bootstrap';
 import Sort from '../Sort/Sort';
 import { order } from '../PostList/sortOptions';
-import { Button, Form, InputGroup } from 'react-bootstrap';
+import { isOnlySpaces, separateStr_1ByStr_2, sort as sortComments } from '../../helpers/helpers';
 import idGenarator from '../../helpers/idGenarator';
 import styles from './SinglePostShowStyle.module.css';
-class SinglePostShow extends PureComponent {
-  state = {
-    comments: [...this.props.comments],
-    sort: { value: '' },
-    comTextToBeAdded: '',
+
+function SinglePostShow(props) {
+  const [comments, setComments] = useState([...props.comments]);
+  const [sort, setSort] = useState({ value: '' });
+  const [comTextToBeAdded, setComTextToBeAdded] = useState('');
+  const { title, content, search } = props;
+
+  useEffect(() => {    
+      setComments([...props.comments]);
+    
+  }, [props.comments]);  
+
+  const handleSort = (option) => {
+    setSort(option);
+    setComments((prevComments) => {
+      const commentsCopy = [...prevComments]; 
+      sortComments(option.value, commentsCopy, order);
+
+      return commentsCopy;
+    })
   }
 
-  componentDidUpdate(prevProps) {
-    if (prevProps.comments !== this.props.comments) {
-      this.setState({
-        comments: [...this.props.comments],
-      });
+    const deleteComment = (postId) => {
+      setComments((prevComments) => {
+        const commentsCopy = [...prevComments];
+        const updatedComments = commentsCopy.filter(comment => comment.id !== postId);
+
+        return updatedComments;
+      })
     }
-  }
 
-  handleSort = (option) => {
-    this.setState({ sort: option });
-    this.setState((prevState) => {
-    const commentsCopy = [...prevState.comments];            
-    sort(prevState.sort.value, commentsCopy, order); 
-
-      return {
-        comments: commentsCopy,
+    const addComment = () => {  
+      if(!comTextToBeAdded || isOnlySpaces(comTextToBeAdded)) {
+        return;
+      }
+  
+      const commentToBeAdded = {
+        content: comTextToBeAdded,
+        id: idGenarator(),
+        rating: (Math.random() * 9 + 1).toFixed(0),
       };
-    });
-  };
+  
+      setComments((prevComments) => {
+        const updatedComments = [...prevComments, commentToBeAdded];
 
-  deleteComment = (postId) => {
-    this.setState((prevState) => {
-      const commentsCopy = [...prevState.comments];
-      const updatedComments = commentsCopy.filter(comment => comment.id !== postId);
+        return updatedComments;
+      })
 
-      return {
-        comments: updatedComments,
-      }
-    })
-  }
-
-  addComment = () => {
-    const {comTextToBeAdded} = this.state;
-
-    if(!comTextToBeAdded || isOnlySpaces(comTextToBeAdded)) {
-      return;
+      setComTextToBeAdded('');  
     }
-
-    const commentToBeAdded = {
-      content: comTextToBeAdded,
-      id: idGenarator(),
-      rating: (Math.random() * 9 + 1).toFixed(0),
-    };
-
-    this.setState((prevState) => {
-      const updatedComments = [...prevState.comments, commentToBeAdded];
-
-      return {
-        comments: updatedComments,
-        comTextToBeAdded: '',       
-      }
-    })
-
-  }
-
-
-
-  render() {
-    const { title, content, search } = this.props;
-    const {sort, comments, comTextToBeAdded} = this.state;
 
     const commentComponents = comments.map((comment, index) => (
       <div key={index}>
@@ -111,7 +94,7 @@ class SinglePostShow extends PureComponent {
               <div className={styles.rating}>Rating {comment.rating}</div>
               <Button
               variant='danger'
-              onClick={() => {this.deleteComment(comment.id)}}
+              onClick={() => {deleteComment(comment.id)}}
               >
                 Delete
               </Button>       
@@ -119,41 +102,36 @@ class SinglePostShow extends PureComponent {
         </div>
       </div>
     ));
+  
+  return (
+    <div className={styles.singlePostShow}>
+      <h4>{title}</h4>
+      <p>{content}</p>
+      <Sort sort={sort} handleSort={handleSort}/>
+      {commentComponents}
 
-    return (
-      <div className={styles.singlePostShow}>
-        <h4>{title}</h4>
-        <p>{content}</p>
-        <Sort sort={sort} handleSort={this.handleSort}/>
-        {commentComponents}
+      <InputGroup className={styles.inputGroup}>
+      <Form.Control
+        className={styles.formControl}
+        placeholder="Add a comment..."
+        value={comTextToBeAdded}
+        onChange={(event) => { setComTextToBeAdded(event.target.value)}}
+        onKeyDown={(event) => {
+          if (event.key === 'Enter') {
+            addComment();
+          }
+        }}
+      />
+      <Button 
+        variant="info"
+        onClick={() => addComment()}
+      >
+        Comment
+      </Button>
+    </InputGroup>
 
-        <InputGroup className={styles.inputGroup}>
-        <Form.Control
-          className={styles.formControl}
-          placeholder="Add a comment..."
-          value={comTextToBeAdded}
-          onChange={(event) => {
-            this.setState({
-              comTextToBeAdded: event.target.value,
-            })
-          }}
-          onKeyDown={(event) => {
-            if (event.key === 'Enter') {
-              this.addComment();
-            }
-          }}
-        />
-        <Button 
-          variant="info"
-          onClick={() => this.addComment()}
-        >
-          Comment
-        </Button>
-      </InputGroup>
-
-      </div>
-    );
-  }
+    </div>
+  )
 }
 
-export default SinglePostShow;
+export default memo(SinglePostShow);
