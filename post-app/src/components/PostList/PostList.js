@@ -116,7 +116,10 @@ class PostList extends PureComponent {
             </Button>
 
             <DropdownButton
-              disabled={postComponents.length === 0}
+              disabled={
+                postComponents.length === 0 ||
+                postComponents.length === 1
+              }
               className={styles.dropdownButton}
               variant='outline-primary'
               title={sort.value ? sort.label : 'Sort'}
