@@ -1,7 +1,7 @@
 export function separateStr_1ByStr_2(str_1, str_2) {
   const splittedStr_1 = str_1.toLowerCase().split(str_2.toLowerCase());
-  const start = splittedStr_1[0].length - 1;
-  const end = start + str_2.length + 1;
+  const start = splittedStr_1[0].length;
+  const end = start + str_2.length;
   const str_2Original = str_1.substring(start, end); //str_1 in str_2 original
   return [...splittedStr_1, str_2Original];
 }
@@ -25,3 +25,26 @@ export function isOnlySpaces(str) {
   return strippedStr.length === 0;
 }
 
+export function arrayInRange(start, end) {
+  return [...Array(end - start).keys()].map((el) => el + start);
+};
+
+export function getPagesCut ({ numbOfPages, numbOfPagesCut, currentPage }) {
+  const ceiling = Math.ceil(numbOfPagesCut / 2);
+  const floor = Math.floor(numbOfPagesCut / 2);
+  
+  if (numbOfPages < numbOfPagesCut) {
+    return { start: 1, end: numbOfPages + 1 };
+  } 
+  
+  if (currentPage >= 1 && currentPage <= ceiling) {
+    return { start: 1, end: numbOfPagesCut + 1 };
+  } 
+  
+  if (currentPage + floor >= numbOfPages) {
+    return { start: numbOfPages - numbOfPagesCut + 1, end: numbOfPages + 1 };
+  }   
+  
+    return { start: currentPage - ceiling + 1, end: currentPage + floor + 1 };
+  
+};
