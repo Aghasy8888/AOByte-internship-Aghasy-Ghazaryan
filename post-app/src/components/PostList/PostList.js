@@ -1,9 +1,12 @@
 import { PureComponent } from 'react';
 import { DropdownButton, Dropdown, Button } from 'react-bootstrap';
-import styles from './PostListStyle.module.css';
+
 import Post from '../Post/Post';
+
 import { pool } from '../../data/postsObject';
 import { sortOptions, order } from './sortOptions';
+
+import styles from './PostListStyle.module.css';
 
 class PostList extends PureComponent {
   state = {
@@ -106,7 +109,6 @@ class PostList extends PureComponent {
           <div className={styles.buttonContainer}>
             <Button onClick={() => addPost(listNum)}>+</Button>
             <Button onClick={() => clearPostList(listNum)}>Clear</Button>
-            {/*<button onClick={handleSort}>Sort</button>*/}
 
             <DropdownButton
               disabled={postComponents.length === 0}
