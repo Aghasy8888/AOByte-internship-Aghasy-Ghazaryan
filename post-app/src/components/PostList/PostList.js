@@ -109,6 +109,7 @@ class PostList extends PureComponent {
             {/*<button onClick={handleSort}>Sort</button>*/}
 
             <DropdownButton
+              disabled={postComponents.length === 0}
               className={styles.dropdownButton}
               variant='outline-primary'
               title={sort.value ? sort.label : 'Sort'}
