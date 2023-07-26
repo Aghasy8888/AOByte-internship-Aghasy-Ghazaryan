@@ -1,7 +1,7 @@
 import React, { memo } from "react";
 import classNames from "classnames";
-import styles from './PaginationItemStyle.module.css'
 import { Button } from "react-bootstrap";
+import styles from './PaginationItemStyle.module.css'
 
 function PaginationItemNoMemo({page, currentPage, handlePageChange, isDisabled}) {
     const liClasses = classNames({

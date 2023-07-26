@@ -1,3 +1,8 @@
+  .pageLink {
+    margin: 0;
+    border-radius: 0;
+  }
+
   .pageItem:first-child .pageLink {    
     margin-left: 0;
     border-bottom-left-radius: 0.25rem;
