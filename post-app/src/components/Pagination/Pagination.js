@@ -15,9 +15,12 @@ function Pagination({total, postsPerPage, currentPage, handlePageChange}) {
     });
 
     const pages = arrayInRange(pagesCut.start, pagesCut.end)
-    const isFirstPage = currentPage === 1;
-    const isLastPage = currentPage === numbOfPages;
+    const isFirstPage = currentPage === 1 || total === 0;
+    const isLastPage = currentPage === numbOfPages || total === 0;
     
+    if (total === 1) {
+        handlePageChange(1)
+    }
 
     return (
         <div className={styles.pagination}>
