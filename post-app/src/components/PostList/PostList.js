@@ -89,7 +89,11 @@ function PostList(props) {
             <Button onClick={() => addPost(listNum)}>+</Button>
             <Button onClick={() => clearPostList(listNum)}>Clear</Button>
 
-            <Sort sort={sort} handleSort={handleSort} />
+            <Sort 
+              postComponentsLength={postComponents.length} 
+              sort={sort} 
+              handleSort={handleSort} 
+            />
           </div>
         </div>
 
