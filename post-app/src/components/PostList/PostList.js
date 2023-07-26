@@ -108,7 +108,12 @@ class PostList extends PureComponent {
           <h3>List {listNum}</h3>
           <div className={styles.buttonContainer}>
             <Button onClick={() => addPost(listNum)}>+</Button>
-            <Button onClick={() => clearPostList(listNum)}>Clear</Button>
+            <Button 
+              onClick={() => clearPostList(listNum)}
+              disabled={postComponents.length === 0}
+            >
+              Clear
+            </Button>
 
             <DropdownButton
               disabled={postComponents.length === 0}
