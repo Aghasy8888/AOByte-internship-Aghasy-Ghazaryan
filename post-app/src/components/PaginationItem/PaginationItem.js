@@ -8,8 +8,9 @@ function PaginationItemNoMemo({page, currentPage, handlePageChange, isDisabled})
         [styles.pageItem]: true,
         [styles.active]: page === currentPage,
         [styles.disabled]: isDisabled,
-    });  
+    }); 
 
+    
     return (
         <div         
             className={liClasses} 
