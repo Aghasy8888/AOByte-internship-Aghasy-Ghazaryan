@@ -103,11 +103,13 @@ function SinglePostShow(props) {
       </div>
     ));
   
+    const isDisabled = comments.length === 0 || comments.length === 1;
+
   return (
     <div className={styles.singlePostShow}>
       <h4>{title}</h4>
       <p>{content}</p>
-      <Sort sort={sort} handleSort={handleSort}/>
+      <Sort isDisabled={isDisabled} sort={sort} handleSort={handleSort}/>
       {commentComponents}
 
       <InputGroup className={styles.inputGroup}>

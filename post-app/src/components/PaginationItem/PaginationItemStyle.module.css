@@ -1,3 +1,8 @@
+  .pageLink {
+    margin: 0;
+    border-radius: 0;
+  }
+
   .pageItem:first-child .pageLink {    
     margin-left: 0;
     border-bottom-left-radius: 0.25rem;
@@ -25,7 +30,7 @@
    
   .pageLink {
     padding: 0.5rem 0.75rem;
-    color: #5cb2b8;
+    color: #2e46cb;
     background-color: #fff;
     border: 1px solid #ddd;
     cursor: pointer;
@@ -33,7 +38,7 @@
    
   
   .pageLink:hover {
-    color: #3d8b8b;
+    color: #0408f3;
     background-color: #eceeef;
     border-color: #ddd;
   } 

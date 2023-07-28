@@ -79,6 +79,8 @@ function PostList(props) {
     />
   ));
 
+  const isDisabled = postComponents.length === 0 || postComponents.length === 1;
+
   return (
     (
       <div className={styles.postList}>
@@ -87,10 +89,15 @@ function PostList(props) {
           <h3>List {listNum}</h3>
           <div className={styles.buttonContainer}>
             <Button onClick={() => addPost(listNum)}>+</Button>
-            <Button onClick={() => clearPostList(listNum)}>Clear</Button>
+            <Button 
+            onClick={() => clearPostList(listNum)}
+            disabled={postComponents.length === 0}
+            >
+              Clear
+            </Button>
 
             <Sort 
-              postComponentsLength={postComponents.length} 
+              isDisabled={isDisabled} 
               sort={sort} 
               handleSort={handleSort} 
             />

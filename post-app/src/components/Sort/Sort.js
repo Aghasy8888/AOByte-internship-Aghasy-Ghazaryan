@@ -4,13 +4,11 @@ import { sortOptions } from '../PostList/sortOptions';
 import styles from './SortStyle.module.css';
 
 function Sort(props) {
-  const { sort, handleSort, postComponentsLength} = props;
-  const isDisable = postComponentsLength === 0;
-  console.log('disable', Boolean(isDisable));
+  const { sort, handleSort, isDisabled} = props;
 
   return (
     <DropdownButton
-      disabled={Boolean(isDisable)}
+      disabled={isDisabled}
       className={styles.dropdownButton}
       variant='outline-primary'
       title={sort.value ? sort.label : 'Sort'}
