@@ -60,7 +60,7 @@ function Pagination({total, postsPerPage, currentPage, handlePageChange}) {
             />
 
             <PaginationItem 
-                page={`Last (${total})`}
+                page={`Last (${total || 0})`}
                 currentPage={currentPage}
                 handlePageChange={() => handlePageChange(total)}
                 isDisabled={isLastPage}

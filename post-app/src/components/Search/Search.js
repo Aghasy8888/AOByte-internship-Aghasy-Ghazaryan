@@ -3,6 +3,7 @@ import { InputGroup, Form, Button } from 'react-bootstrap';
 import { pool } from '../../data/postsObject';
 import styles from './SearchStyle.module.css';
 
+
 function Search(props) {
   const [search, setSearch] = useState('');
 
@@ -15,7 +16,6 @@ function Search(props) {
 
         return found;
       })
-
 
     props.getFoundPosts(foundPosts, search);
   };
