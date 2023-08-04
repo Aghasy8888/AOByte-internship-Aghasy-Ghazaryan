@@ -1,0 +1,11 @@
+.postShowContainer {
+    display: flex;
+    flex-direction: column;
+    /* align-items: center; */
+}
+
+.postShow {    
+    margin: 20px;
+    min-height: fit-content;
+}
+

@@ -1,23 +1,26 @@
-import logo from './logo.svg';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+
 import './App.css';
+import PostApp from './components/PostApp/PostApp';
+import Login from "./pages/Login/Login";
+import SharedLayout from "./pages/SharedLayout/SharedLayout";
+import Register from "./pages/Register/Register";
+import NotFound from "./pages/NotFound/NotFound";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className='App'>
+      <BrowserRouter>
+        <Routes>
+        <Route path='/' element={<SharedLayout />}>
+          <Route index element={<PostApp />} />
+          <Route path='login' element={<Login />} />
+          <Route path='register' element={<Register />} />
+          <Route path='*' element={<NotFound />} />
+        </Route>
+        </Routes>
+        
+      </BrowserRouter>        
     </div>
   );
 }

@@ -1,0 +1,28 @@
+.navbar {
+  margin-top: 10px;
+    width: 90vw;   
+    display: flex;
+    gap: 1rem;
+    justify-content: space-between;
+  }
+  
+  .link {
+    color: black;
+    font-weight: bold;
+  }
+  
+  .active {
+    color: blue;
+  }
+
+  .userInfo {
+    font-weight: bold;
+    color: rgb(40, 97, 43);
+    margin-left: 20px;
+  }
+
+  .linksContainer {
+    margin-left: 20px;
+    display: flex;
+    gap: 20px;
+  }
