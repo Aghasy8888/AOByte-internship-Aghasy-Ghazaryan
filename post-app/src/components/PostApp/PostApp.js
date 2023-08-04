@@ -8,7 +8,6 @@ import { pool } from '../../data/postsObject';
   const [postsToShow, setPostsToShow] = useState(pool);
   const [search, setSearch] = useState('');
   
-  
   const getFoundPosts = (foundPosts, search) => {
     setPostsToShow(foundPosts);
     setSearch(search);

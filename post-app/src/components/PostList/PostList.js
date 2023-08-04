@@ -58,7 +58,6 @@ function PostList(props) {
   };
 
   const handleSort = (option) => {
-    console.log('option: ',option);
     setSort(option);    
     setPostList((prevPostList) => {
       const postListCopy = [...prevPostList];

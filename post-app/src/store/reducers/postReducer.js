@@ -1,4 +1,4 @@
-import * as actionTypes from '../postActionTypes';
+import * as actionTypes from '../actions/post/postActionTypes';
 
 const initialState = {
     postsToShow: [],
@@ -13,7 +13,6 @@ switch (action.type) {
             ...state,
             postsToShow: action.posts,
         }
-        break;
 
     default:
         return state;

@@ -1,22 +1,15 @@
-import React, { memo, useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import React, { memo, useState } from 'react';
 import SinglePostShow from '../SinglePostShow/SinglePostShow';
 import Pagination from '../Pagination/Pagination';
-import { getPosts } from '../../store/postActions';
 import styles from './PostShowStyle.module.css';
 
-function PostShow({ search }) {
-  const dispatch = useDispatch();
+
+function PostShow({postsToShow, search}) {
+  const postsPerPage = 1;
   const [currentPage, setCurrentPage] = useState(1);
-  const postsToShow = useSelector((state) => state.postReducer.postsToShow);
-  const postsPerPage = 1;  
   const lastPostIndex = currentPage * postsPerPage;
   const firstPostIndex = lastPostIndex - postsPerPage;
-  const currentPosts = postsToShow.slice(firstPostIndex, lastPostIndex); 
-
-  useEffect(()=> {
-    dispatch(getPosts());      
-  }, [])
+  const currentPosts = postsToShow.slice(firstPostIndex, lastPostIndex);
 
   const postComponents = currentPosts.map((post, index) => (
     <SinglePostShow
@@ -26,7 +19,9 @@ function PostShow({ search }) {
       comments={post.comments}
       search={search}
     />
-  ))
+  ));
+
+  
   
   return (
     <div className={styles.postShowContainer}>
@@ -41,5 +36,7 @@ function PostShow({ search }) {
     </div>
   )
 }
+
+
 
 export default memo(PostShow);

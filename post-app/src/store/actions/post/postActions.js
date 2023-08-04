@@ -1,4 +1,4 @@
-import { pool as posts}  from '../data/postsObject';
+import { pool as posts}  from '../../../data/postsObject';
 import * as actionTypes from './postActionTypes';
 
 const apiUrl = 'https://post-app-ccdba-default-rtdb.firebaseio.com/';
