@@ -6,6 +6,7 @@ import { register } from "../../store/actions/user/userActions";
 
 import { Form, Button, Container, Row, Col } from "react-bootstrap";
 import styles from "./RegisterStyle.module.css";
+import { isValidEmail } from "../../helpers/helpers";
 
 function Register() {
   const navigate = useNavigate();
@@ -39,6 +40,8 @@ function Register() {
       valid = false;
     } else if(!email || !name || !surname ) {
       valid = false;
+    } else if(!isValidEmail(email)) {
+      valid = false;
     }
 
     setErrors({
@@ -48,6 +51,12 @@ function Register() {
       name: name ? null : "Name is required",
       surname: surname ? null : "Surname is required",
     });
+
+    if (!isValidEmail(email)) {
+      setErrors({
+        email: "Invalid email",
+      })
+    }
 
     if (valid) {
       dispatch(register(values, navigate));

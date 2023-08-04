@@ -48,3 +48,8 @@ export function getPagesCut ({ numbOfPages, numbOfPagesCut, currentPage }) {
     return { start: currentPage - ceiling + 1, end: currentPage + floor + 1 };
   
 };
+
+export function isValidEmail(email) {
+  const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  return emailPattern.test(email);
+}

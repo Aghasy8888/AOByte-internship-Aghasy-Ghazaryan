@@ -5,6 +5,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { Form, Button, Container, Row, Col } from "react-bootstrap";
 import styles from "./LoginStyle.module.css";
 import { login } from "../../store/actions/user/userActions";
+import { isValidEmail } from "../../helpers/helpers";
 
 function Login() {
   const dispatch = useDispatch();
@@ -27,7 +28,13 @@ function Login() {
       password: password ? null : "Password is required",
     });
 
-    if (email && password) {
+    if (!isValidEmail(email)) {
+      setErrors({
+        email: "Invalid email",
+      })
+    }
+
+    if (isValidEmail(email) && password) {
       dispatch(login(values, navigate));
     }
   };
