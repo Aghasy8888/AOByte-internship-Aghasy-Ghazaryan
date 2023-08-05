@@ -4,11 +4,11 @@ import decode from "jwt-decode";
 
 const apiUrl = "https://post-app-ccdba-default-rtdb.firebaseio.com/";
 
-export function saveJWT(data) {
+export function saveToken(data) {
   localStorage.setItem("token", JSON.stringify(data));
 }
 
-export function removeJWT() {
+export function removeToken() {
     localStorage.removeItem("token");
   }
 
@@ -36,7 +36,7 @@ export function getJWT(navigate) {
         if (newToken.error) {
           throw newToken.error;
         }
-        saveJWT(newToken);
+        saveToken(newToken);
         return newToken.jwt;
       })
       .catch(() => {
@@ -92,7 +92,7 @@ function request(data, type) {
 
 function logout(navigate) {
   store.dispatch({ type: LOGOUT_SUCCESS });
-  removeJWT();
+  removeToken();
   navigate("/login");
 }
 

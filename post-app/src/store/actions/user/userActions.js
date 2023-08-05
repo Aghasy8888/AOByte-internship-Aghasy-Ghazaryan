@@ -1,4 +1,4 @@
-import { getLocalJWT, loginRequest, registerRequest, removeJWT, saveJWT } from '../../../helpers/auth';
+import { getLocalJWT, loginRequest, registerRequest, removeToken, saveToken } from '../../../helpers/auth';
 import request from '../../../helpers/request';
 import * as actionTypes from './userActionTypes';
 
@@ -27,7 +27,7 @@ export function login(data, navigate) {
 
         loginRequest(data)
         .then(token => {
-            saveJWT(token);
+            saveToken(token);
             dispatch({type: actionTypes.LOGIN_SUCCESS});
             navigate("/");
 
@@ -46,7 +46,7 @@ export function logout(navigate){
         if(jwt){
             request(`${apiUrl}/user/sign-out`, "POST", {jwt})
             .then(() => {
-                removeJWT();
+                removeToken();
                 dispatch({type: actionTypes.LOGOUT_SUCCESS});
                 navigate('/login');  
             })
