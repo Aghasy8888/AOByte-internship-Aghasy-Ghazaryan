@@ -9,9 +9,7 @@ function Search(props) {
   const handleSubmit = () => {
     const foundPosts = pool
       .filter((post) => {
-        const found = post.comments.find((comment) =>
-          comment.content.toLowerCase().includes(search.toLowerCase())
-        );
+        const found = post.title.toLowerCase().includes(search.toLowerCase());
 
         return found;
       })

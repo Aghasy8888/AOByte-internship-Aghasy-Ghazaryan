@@ -1,47 +1,45 @@
 import idGenerator from "../helpers/idGenarator";
 
-
-
 export const pool = [
   {
     id: idGenerator(),
-    title: 'Ricardo Kaka',
-    content: 'Ricardo Kaka was Unstoppable in his Prime!',
+    title: "Ricardo Kaka",
+    content: "Ricardo Kaka was Unstoppable in his Prime!",
     comments: [
       {
         id: idGenerator(),
         content:
-          'I always feel bad for Kaka for having such a short prime period, unlike Ronaldinho or Robinho, Kaka stayed away from parties and unhealthy life styles, yet injuries has taken out the best of him away from us. he deserves a longer prime',
+          "I always feel bad for Kaka for having such a short prime period, unlike Ronaldinho or Robinho, Kaka stayed away from parties and unhealthy life styles, yet injuries has taken out the best of him away from us. he deserves a longer prime",
         rating: 7,
       },
       {
         id: idGenerator(),
         content:
-          'Those who didn’t see Kaka in his prime just won’t understand how good this guy was.',
+          "Those who didn’t see Kaka in his prime just won’t understand how good this guy was.",
         rating: 9,
       },
       {
         id: idGenerator(),
         content:
-          'O gol mais bonito do Kaká foi no jogo Brasil x Argentina, arrancando da defesa em alta velocidade até marcar um golaço...',
+          "O gol mais bonito do Kaká foi no jogo Brasil x Argentina, arrancando da defesa em alta velocidade até marcar um golaço...",
         rating: 8,
       },
       {
         id: idGenerator(),
         content:
-          'Simply a wonderful midfielder and a world-class dude. The world of football misses him',
+          "Simply a wonderful midfielder and a world-class dude. The world of football misses him",
         rating: 10,
       },
     ],
   },
   {
     id: idGenerator(),
-    title: 'Cristiano Ronaldo',
-    content: 'THANK YOU, CRISTIANO RONALDO | Real Madrid',
+    title: "Cristiano Ronaldo",
+    content: "THANK YOU, CRISTIANO RONALDO | Real Madrid",
     comments: [
       {
         id: idGenerator(),
-        content: '451 goals in 438 matches',
+        content: "451 goals in 438 matches",
         rating: 10,
       },
       {
@@ -52,56 +50,56 @@ export const pool = [
       },
       {
         id: idGenerator(),
-        content: 'Came as a Prince, left as a King. 👑',
+        content: "Came as a Prince, left as a King. 👑",
         rating: 8,
       },
       {
         id: idGenerator(),
         content:
-          'Even after Cristiano WC loss we gather here where he showed his class to remember the old good days🐐🇵🇹👑',
+          "Even after Cristiano WC loss we gather here where he showed his class to remember the old good days🐐🇵🇹👑",
         rating: 7,
       },
     ],
   },
   {
     id: idGenerator(),
-    title: 'Lionel Messi',
-    content: 'Lionel Messi - King Of Football',
+    title: "Lionel Messi",
+    content: "Lionel Messi - King Of Football",
     comments: [
       {
         id: idGenerator(),
-        content: 'its unbelievable, he did all this in 1 season',
+        content: "its unbelievable, he did all this in 1 season",
         rating: 6,
       },
       {
         id: idGenerator(),
-        content: 'WHO IS HERE AFTER HE WON THE WORLD CUP???',
+        content: "WHO IS HERE AFTER HE WON THE WORLD CUP???",
         rating: 7,
       },
       {
         id: idGenerator(),
         content:
-          'Goal scorer, playmaker, winger, dribbler, passer, freekick scorer, visioner, magician.. what a tallent!',
+          "Goal scorer, playmaker, winger, dribbler, passer, freekick scorer, visioner, magician.. what a tallent!",
         rating: 8,
       },
       {
         id: idGenerator(),
         content:
-          'Best dribbler, play maker, vision, goal scorer ,genius, game changer ,free kicker, passer, penalty taker, defender .absolutely 🐐 🔥simply God of football.',
+          "Best dribbler, play maker, vision, goal scorer ,genius, game changer ,free kicker, passer, penalty taker, defender .absolutely 🐐 🔥simply God of football.",
         rating: 8,
       },
     ],
   },
   {
     id: idGenerator(),
-    title: 'Pelé',
+    title: "Pelé",
     content:
-      'Pelé | Rise of the Brazilian Legend | The King of Football | Rising With Soccer',
+      "Pelé | Rise of the Brazilian Legend | The King of Football | Rising With Soccer",
     comments: [
       {
         id: idGenerator(),
         content:
-          'pele! pele! pele!🇧🇷❤🇧🇷 This man is the legend of football, respect him.',
+          "pele! pele! pele!🇧🇷❤🇧🇷 This man is the legend of football, respect him.",
         rating: 10,
       },
       {
@@ -112,51 +110,51 @@ export const pool = [
       },
       {
         id: idGenerator(),
-        content: 'Pele is a true Legend who born in Brazil',
+        content: "Pele is a true Legend who born in Brazil",
         rating: 8,
       },
       {
         id: idGenerator(),
-        content: 'Sou brazileiro com muito orgulho com muito amor',
+        content: "Sou brazileiro com muito orgulho com muito amor",
         rating: 8,
       },
     ],
   },
   {
     id: idGenerator(),
-    title: 'Zinedine Zidane',
+    title: "Zinedine Zidane",
     content: "No One Has Matched Zidane's Elegance So Far",
     comments: [
       {
         id: idGenerator(),
         content:
-          'His football style was not only genius and precise, it was always beautiful to watch. Its like a form of art. He really dances with the ball and is a faster thinker than any of the opponents.         I could watch him play for hours and hours. Absolutely amazing!',
+          "His football style was not only genius and precise, it was always beautiful to watch. Its like a form of art. He really dances with the ball and is a faster thinker than any of the opponents.         I could watch him play for hours and hours. Absolutely amazing!",
         rating: 7,
       },
       {
         id: idGenerator(),
         content:
-          'What a work of art. The real Van Gogh of football, alongside Ronaldinho. I could spend hours and hours watching this in slow motion!',
+          "What a work of art. The real Van Gogh of football, alongside Ronaldinho. I could spend hours and hours watching this in slow motion!",
         rating: 7,
       },
       {
         id: idGenerator(),
         content:
-          'Zizu and Ronaldinho are the definition of football at its finest form.Magicians with class both in and out of the pitch.',
+          "Zizu and Ronaldinho are the definition of football at its finest form.Magicians with class both in and out of the pitch.",
         rating: 5,
       },
       {
         id: idGenerator(),
         content:
-          'An example of a player who fulfilled his potential. A guy that makes you fall in love with the game.',
+          "An example of a player who fulfilled his potential. A guy that makes you fall in love with the game.",
         rating: 6,
       },
     ],
   },
   {
     id: idGenerator(),
-    title: 'Kylian Mbappé',
-    content: 'Kylian Mbappé is simply a PHENOMENON',
+    title: "Kylian Mbappé",
+    content: "Kylian Mbappé is simply a PHENOMENON",
     comments: [
       {
         id: idGenerator(),
@@ -166,25 +164,25 @@ export const pool = [
       },
       {
         id: idGenerator(),
-        content: 'Best player in the world',
+        content: "Best player in the world",
         rating: 7,
       },
       {
         id: idGenerator(),
-        content: 'Great player but I’d pick Vini over him.',
+        content: "Great player but I’d pick Vini over him.",
         rating: 6,
       },
       {
         id: idGenerator(),
-        content: 'MONSTRO 🔥',
+        content: "MONSTRO 🔥",
         rating: 5,
       },
     ],
   },
   {
     id: idGenerator(),
-    title: 'Erling Haaland',
-    content: '14 year old Erling Haaland was INSANE',
+    title: "Erling Haaland",
+    content: "14 year old Erling Haaland was INSANE",
     comments: [
       {
         id: idGenerator(),
@@ -195,7 +193,7 @@ export const pool = [
       {
         id: idGenerator(),
         content:
-          'For such age, he is not selfish either. He pass the ball to his teammate whenever  possible',
+          "For such age, he is not selfish either. He pass the ball to his teammate whenever  possible",
         rating: 5,
       },
       {
@@ -214,23 +212,22 @@ export const pool = [
   },
   {
     id: idGenerator(),
-    title: 'Henrik Mkhitaryan',
-    content: 'PLAYER CAM | HENRIKH MKHITARYAN VS MILAN',
+    title: "Henrik Mkhitaryan",
+    content: "PLAYER CAM | HENRIKH MKHITARYAN VS MILAN",
     comments: [
       {
         id: idGenerator(),
-        content: 'Un professionista serio ... sempre forza Inter 👍',
+        content: "Un professionista serio ... sempre forza Inter 👍",
         rating: 8,
       },
       {
         id: idGenerator(),
-        content: 'Հզոր Մխիթարյան✊🇦🇲',
+        content: "Հզոր Մխիթարյան✊🇦🇲",
         rating: 10,
       },
       {
         id: idGenerator(),
-        content:
-          "Forza INTER! We love you Miki!",
+        content: "Forza INTER! We love you Miki!",
         rating: 5,
       },
       {
@@ -242,5 +239,3 @@ export const pool = [
     ],
   },
 ];
-
-
